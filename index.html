@@ -4,685 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Following Bot | Next-Gen Automation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #000000;
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Optimized Animated Background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: radial-gradient(ellipse at top, #0f0728 0%, #000000 50%);
-        }
-
-        .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.4;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, transparent 70%);
-            top: -10%;
-            left: -5%;
-        }
-
-        .orb-2 {
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
-            top: 40%;
-            right: -5%;
-            animation-delay: 7s;
-        }
-
-        .orb-3 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
-            bottom: -10%;
-            left: 30%;
-            animation-delay: 14s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(60px, -60px) scale(1.1); }
-            66% { transform: translate(-40px, 40px) scale(0.9); }
-        }
-
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Compact Header */
-        header {
-            padding: 1.2rem 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #06b6d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        .logo-icon {
-            font-size: 1.8rem;
-            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
-        }
-
-        .github-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.7rem 1.8rem;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .github-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .github-btn:hover::before {
-            left: 100%;
-        }
-
-        .github-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
-        }
-
-        /* Compact Hero */
-        .hero {
-            padding: 9rem 0 5rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 4.2rem;
-            font-weight: 900;
-            margin-bottom: 1.2rem;
-            background: linear-gradient(135deg, #ffffff 0%, #8b5cf6 30%, #ec4899 60%, #06b6d4 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            animation: gradientShift 6s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: #c4b5fd;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1.05rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.6);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 1rem 2.5rem;
-            background: rgba(139, 92, 246, 0.15);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1.05rem;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(139, 92, 246, 0.4);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(139, 92, 246, 0.25);
-            border-color: rgba(139, 92, 246, 1);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
-        }
-
-        .stats-container {
-            display: flex;
-            gap: 0.8rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .stat-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.6rem 1.2rem;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .stat-badge:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-        }
-
-        /* Compact Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 4rem 0;
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
-            padding: 2rem;
-            border-radius: 24px;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #8b5cf6, #ec4899, #06b6d4);
-            transform: scaleX(0);
-            transition: transform 0.5s ease;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(139, 92, 246, 0.6);
-            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(236, 72, 153, 0.12) 100%);
-        }
-
-        .feature-icon {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6));
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.15) rotate(5deg);
-        }
-
-        .feature-card h3 {
-            font-size: 1.35rem;
-            margin-bottom: 0.7rem;
-            color: #ffffff;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .feature-card p {
-            color: #c4b5fd;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Compact Sections */
-        .section {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 3rem;
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #8b5cf6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1.5px;
-        }
-
-        .steps {
-            display: grid;
-            gap: 2rem;
-            max-width: 950px;
-            margin: 0 auto;
-        }
-
-        .step {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-        }
-
-        .step::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, #8b5cf6, #ec4899, #06b6d4);
-        }
-
-        .step:hover {
-            border-color: rgba(139, 92, 246, 0.7);
-            transform: translateX(10px);
-            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
-        }
-
-        .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            color: white;
-            border-radius: 16px;
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .step:hover .step-number {
-            transform: scale(1.08) rotate(3deg);
-        }
-
-        .step h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            color: #ffffff;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .step p {
-            color: #c4b5fd;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .code-block {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 1.2rem;
-            border-radius: 16px;
-            overflow-x: auto;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            margin-top: 1rem;
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .code-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        .code-lang {
-            color: #8b5cf6;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .copy-btn {
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            color: #c4b5fd;
-            padding: 0.4rem 0.9rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .copy-btn:hover {
-            background: rgba(139, 92, 246, 0.4);
-            border-color: rgba(139, 92, 246, 0.8);
-            transform: scale(1.05);
-        }
-
-        .copy-btn.copied {
-            background: rgba(34, 197, 94, 0.3);
-            border-color: rgba(34, 197, 94, 0.6);
-            color: #86efac;
-        }
-
-        .code-block pre {
-            color: #c4b5fd;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        .code-block code {
-            color: #ec4899;
-            text-shadow: 0 0 10px rgba(236, 72, 153, 0.4);
-            font-weight: 600;
-        }
-
-        .config-section {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            margin-top: 1.5rem;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .config-params {
-            display: grid;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .param {
-            display: flex;
-            gap: 1.5rem;
-            padding: 1.2rem;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 14px;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .param:hover {
-            border-color: rgba(139, 92, 246, 0.5);
-            transform: translateX(5px);
-            background: rgba(139, 92, 246, 0.05);
-        }
-
-        .param-name {
-            color: #ec4899;
-            font-weight: 800;
-            min-width: 160px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-
-        .param-desc {
-            color: #c4b5fd;
-            line-height: 1.6;
-            font-size: 0.9rem;
-        }
-
-        /* Compact CTA */
-        .cta-section {
-            text-align: center;
-            padding: 6rem 0;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(236, 72, 153, 0.12) 100%);
-            border-radius: 30px;
-            margin: 5rem 0;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-        }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-            background: linear-gradient(135deg, #ffffff 0%, #8b5cf6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            color: #c4b5fd;
-            margin-bottom: 2rem;
-        }
-
-        .warning {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(220, 38, 38, 0.12) 100%);
-            border: 2px solid rgba(239, 68, 68, 0.4);
-            padding: 1.8rem;
-            border-radius: 20px;
-            margin: 3rem 0;
-            backdrop-filter: blur(10px);
-        }
-
-        .warning-title {
-            color: #fca5a5;
-            font-weight: 900;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 1.2rem;
-        }
-
-        .warning p {
-            color: #e5e7eb;
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
-            margin-top: 5rem;
-            color: #9ca3af;
-        }
-
-        footer p {
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
-        }
-
-        footer a {
-            color: #8b5cf6;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 700;
-        }
-
-        footer a:hover {
-            color: #ec4899;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.05rem;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2.3rem;
-            }
-
-            .hero {
-                padding: 8rem 0 4rem;
-            }
-
-            .param {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .param-name {
-                min-width: auto;
-            }
-
-            .cta-section h2 {
-                font-size: 2.3rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="animated-bg">
@@ -712,6 +34,30 @@
             <div class="container">
                 <h1>Instagram Following Bot</h1>
                 <p class="hero-subtitle">Next-gen AI automation that mimics human behavior to grow your Instagram following intelligently and safely.</p>
+                
+                <div class="version-info">
+                    <span class="version-badge">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                        </svg>
+                        v2.1.0
+                    </span>
+                    <span class="update-badge">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                        </svg>
+                        Updated Oct 2025
+                    </span>
+                    <span class="license-badge">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 0 2.04 4.327z"/>
+                        </svg>
+                        MIT License
+                    </span>
+                </div>
+                
                 <div class="hero-buttons">
                     <a href="https://github.com/jaymondal45/instagram-following-bot" class="btn-primary" target="_blank">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
@@ -727,6 +73,19 @@
                     <span class="stat-badge">🚀 Human-like AI</span>
                     <span class="stat-badge">🔒 Account Safe</span>
                     <span class="stat-badge">⚡ Lightning Fast</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="demo-section">
+                <h3>🎬 See It In Action</h3>
+                <div class="demo-placeholder">
+                    <div class="demo-icon">📹</div>
+                    <div class="demo-text">Demo GIF/Screenshot Coming Soon</div>
+                    <p style="color: #a8a8b3; font-size: 0.85rem; max-width: 500px;">
+                        Visual demonstration showing the bot logging in, navigating Instagram, and following accounts with human-like behavior
+                    </p>
                 </div>
             </div>
         </section>
@@ -804,6 +163,9 @@ cd instagram-following-bot</pre>
                         <div class="step-number">3</div>
                         <h3>Setup ChromeDriver</h3>
                         <p>Download ChromeDriver matching your Chrome version and add it to your system PATH or project directory</p>
+                        <a href="https://googlechromelabs.github.io/chrome-for-testing/" target="_blank" class="contribute-link" style="margin-top: 1rem; display: inline-flex;">
+                            Download ChromeDriver →
+                        </a>
                     </div>
 
                     <div class="step">
@@ -883,6 +245,47 @@ cd instagram-following-bot</pre>
                     </div>
                     <p>Instagram automation violates the platform's terms of service. This project is strictly for educational and research purposes. Use at your own risk — the author assumes no responsibility for account suspension, misuse, or any violations of Instagram's policies.</p>
                 </div>
+
+                <div class="contribute-section">
+                    <h3>🤝 How to Contribute</h3>
+                    <p style="text-align: center; color: #c4b5fd; margin-bottom: 1.5rem;">
+                        We welcome contributions from the community! Here's how you can help:
+                    </p>
+                    
+                    <div class="contribute-grid">
+                        <div class="contribute-card">
+                            <div class="contribute-card-icon">🐛</div>
+                            <h4>Report Issues</h4>
+                            <p>Found a bug? Let us know by opening an issue on GitHub with detailed information.</p>
+                            <a href="https://github.com/jaymondal45/instagram-following-bot/issues" target="_blank" class="contribute-link">
+                                Report Issue →
+                            </a>
+                        </div>
+                        
+                        <div class="contribute-card">
+                            <div class="contribute-card-icon">💡</div>
+                            <h4>Suggest Features</h4>
+                            <p>Have ideas for improvements? Share your suggestions in the GitHub discussions.</p>
+                            <a href="https://github.com/jaymondal45/instagram-following-bot/discussions" target="_blank" class="contribute-link">
+                                Share Ideas →
+                            </a>
+                        </div>
+                        
+                        <div class="contribute-card">
+                            <div class="contribute-card-icon">🔧</div>
+                            <h4>Submit Pull Requests</h4>
+                            <p>Want to contribute code? Fork the repo, make your changes, and submit a PR.</p>
+                            <a href="https://github.com/jaymondal45/instagram-following-bot/pulls" target="_blank" class="contribute-link">
+                                Contribute Code →
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center; color: #a8a8b3; margin-top: 2rem; font-size: 0.9rem;">
+                        📄 This project is licensed under the <strong style="color: #8b5cf6;">MIT License</strong> — see the 
+                        <a href="https://github.com/jaymondal45/instagram-following-bot/blob/main/LICENSE" target="_blank" style="color: #ec4899; text-decoration: none; font-weight: 700;">LICENSE</a> file for details.
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -906,42 +309,6 @@ cd instagram-following-bot</pre>
             <p style="margin-top: 0.3rem;">Full-Stack Developer | Automation Architect | AI Enthusiast</p>
         </div>
     </footer>
-
-    <script>
-        function copyCode(button, codeId) {
-            const codeElement = document.getElementById(codeId);
-            const textToCopy = codeElement.textContent;
-            
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const originalHTML = button.innerHTML;
-                button.classList.add('copied');
-                button.innerHTML = `
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-                    </svg>
-                    Copied!
-                `;
-                
-                setTimeout(() => {
-                    button.classList.remove('copied');
-                    button.innerHTML = originalHTML;
-                }, 2000);
-            });
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
