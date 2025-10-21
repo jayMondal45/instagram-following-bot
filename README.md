@@ -43,7 +43,7 @@ A smart and stealthy **Instagram automation bot** built using **Python + Seleniu
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/instagram-following-bot.git
+git clone https://github.com/jaymondal45/instagram-following-bot.git
 cd instagram-following-bot
 ```
 
